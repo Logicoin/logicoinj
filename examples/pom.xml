@@ -20,20 +20,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.google</groupId>
-        <artifactId>darkcoinj-parent</artifactId>
+        <artifactId>logicoinj-parent</artifactId>
         <version>0.12-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>darkcoinj-examples</artifactId>
+    <artifactId>logicoinj-examples</artifactId>
 
-    <name>darkcoinj Examples</name>
-    <description>A collection of examples using the darkcoinj library</description>
+    <name>logicoinj Examples</name>
+    <description>A collection of examples using the logicoinj library</description>
 
     <dependencies>
         <dependency>
             <groupId>com.google</groupId>
-            <artifactId>darkcoinj</artifactId>
+            <artifactId>logicoinj</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

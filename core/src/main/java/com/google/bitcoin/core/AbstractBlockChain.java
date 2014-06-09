@@ -801,12 +801,12 @@ public abstract class AbstractBlockChain {
 
         int DiffMode = 1;
         if (params.getId().equals(NetworkParameters.ID_TESTNET)) {
-            if (storedPrev.getHeight()+1 >= 16) { DiffMode = 4; }
+            if (storedPrev.getHeight()+1 >= 10) { DiffMode = 4; }
         }
         else {
-            if (storedPrev.getHeight()+1 >= 68589) { DiffMode = 4; }
-            else if (storedPrev.getHeight()+1 >= 34140) { DiffMode = 3; }
-            else if (storedPrev.getHeight()+1 >= 15200) { DiffMode = 2; }
+            if (storedPrev.getHeight()+1 >= 86400) { DiffMode = 4; }
+            else if (storedPrev.getHeight()+1 >= 60) { DiffMode = 3; }
+            else if (storedPrev.getHeight()+1 >= 30) { DiffMode = 2; }
         }
 
         if (DiffMode == 1) { checkDifficultyTransitions_V1(storedPrev, nextBlock); return; }
@@ -1334,7 +1334,7 @@ public abstract class AbstractBlockChain {
             int height = storedPrev.getHeight() + 1;
             ///if(System.getProperty("os.name").toLowerCase().contains("windows"))
             //{
-            if(height <= 68589)
+            if(height <= 86400)
             {
                 long nBitsNext = nextBlock.getDifficultyTarget();
 
@@ -1360,68 +1360,6 @@ public abstract class AbstractBlockChain {
                                 receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
             }
 
-
-
-            /*
-            if(height >= 34140)
-                {
-                    long nBitsNext = nextBlock.getDifficultyTarget();
-
-                    long calcDiffBits = (accuracyBytes+3) << 24;
-                    calcDiffBits |= calcDiff.shiftRight(accuracyBytes*8).longValue();
-
-                    double n1 = ConvertBitsToDouble(calcDiffBits);
-                    double n2 = ConvertBitsToDouble(nBitsNext);
-
-                    if(height <= 45000) {
-
-
-                        if(java.lang.Math.abs(n1-n2) > n1*0.2)
-                            throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                                    receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
-
-
-                    }
-                    else if(java.lang.Math.abs(n1-n2) > n1*0.005)
-                        throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                                receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
-
-                }
-                else
-                {
-                    if (calcDiff.compareTo(receivedDifficulty) != 0)
-                        throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                                receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
-                }
-            */
-
-            //}
-            /*else
-            {
-
-            if(height >= 34140 && height <= 45000)
-            {
-                long nBitsNext = nextBlock.getDifficultyTarget();
-
-                long calcDiffBits = (accuracyBytes+3) << 24;
-                calcDiffBits |= calcDiff.shiftRight(accuracyBytes*8).longValue();
-
-                double n1 = ConvertBitsToDouble(calcDiffBits);
-                double n2 = ConvertBitsToDouble(nBitsNext);
-
-                if(java.lang.Math.abs(n1-n2) > n1*0.2)
-                    throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                            receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
-
-            }
-            else
-            {
-                if (calcDiff.compareTo(receivedDifficulty) != 0)
-                    throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                            receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
-            }
-
-            }*/
         }
     }
 

@@ -7,7 +7,6 @@
 #include <jni.h>
 
 
-
 jbyteArray JNICALL hash11_native(JNIEnv *env, jclass cls, jbyteArray header)
 {
     jint Plen = (env)->GetArrayLength(header);
@@ -52,7 +51,7 @@ jbyteArray JNICALL hash11_native(JNIEnv *env, jclass cls, jbyteArray header)
 }
 
 static const JNINativeMethod methods[] = {
-    { "x11_native", "([B)[B", (void *) hash11_native }
+    { "x11_native", "([B)[B", (void *) hash9_native }
 };
 
 jint JNI_OnLoad(JavaVM *vm, void *reserved) {
@@ -62,7 +61,7 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
         return -1;
     }
 
-    jclass cls = (env)->FindClass("com/hashengineering/crypto/X11");
+    jclass cls = (env)->FindClass("com/logicoin/crypto/X11");
     int r = (env)->RegisterNatives(cls, methods, 1);
 
     return (r == JNI_OK) ? JNI_VERSION_1_6 : -1;
